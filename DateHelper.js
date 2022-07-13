@@ -22,10 +22,18 @@ function getLastDayOfTheMonth(date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0);
 }
 
-function getDatesFromRange(startDate, endDate) {
+function getDatesFromRange(
+  startDate,
+  endDate,
+  options = {
+    offsetMonth: 0,
+  }
+) {
   const dates = [];
 
-  for (let i = startDate; i <= endDate; i.setDate(i.getDate() + 1)) {
+  for (let i = new Date(startDate); i <= endDate; i.setDate(i.getDate() + 1)) {
+    i.setMonth(i.getMonth() + options.offsetMonth);
+
     dates.push(new Date(i));
   }
 
@@ -38,6 +46,38 @@ function getMonthName(date) {
   return months[date.getMonth()];
 }
 
+function getNextMonth(date) {
+  return new Date(date.setMonth(date.getMonth() + 1));
+}
+
+function getPreviousMonth(date) {
+  return new Date(date.setMonth(date.getMonth() - 1));
+}
+
+function getMappedDatesFromRange(
+  startDate,
+  endDate,
+  options = {
+    offsetMonth: 0,
+  }
+) {
+  const dates = {};
+
+  console.log(startDate);
+
+  console.log(endDate);
+
+  for (let i = new Date(startDate); i <= endDate; i.setDate(i.getDate() + 1)) {
+    let year = i.getFullYear();
+    let month = i.getMonth() + options.offsetMonth;
+    let day = i.getDate();
+
+    dates[`${year}-${month}-${day}`] = null;
+  }
+
+  return dates;
+}
+
 export default {
   getFirstDayOfTheMonth,
   getLastDayOfTheMonth,
@@ -45,4 +85,7 @@ export default {
   getLastDayOfTheWeek,
   getDatesFromRange,
   getMonthName,
+  getNextMonth,
+  getPreviousMonth,
+  getMappedDatesFromRange,
 };
