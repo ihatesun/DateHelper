@@ -32,7 +32,7 @@ function getDatesFromRange(startDate, endDate) {
   return dates;
 }
 
-function getMonthNames(date) {
+function getMonthName(date) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return months[date.getMonth()];
@@ -44,5 +44,5 @@ export default {
   getFirstDayOfTheWeek,
   getLastDayOfTheWeek,
   getDatesFromRange,
-  getMonthNames,
+  getMonthName,
 };
